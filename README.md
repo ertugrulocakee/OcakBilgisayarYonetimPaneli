@@ -1,8 +1,8 @@
 # OcakBilgisayarYonetimPaneli
 
 İlk Web uygulamamdır. 
-Şirket içi ticari yönetim sistemi (otomasyonu) yapılmaya çalışılmıştır.
-3 kullanıcı türü mevcuttur. Bu kullanıcı türleri ise personel, yönetici ve admindir. 
+Şirket içi ticari yönetim sistemi (otomasyonu) yapılmaya çalışılmıştır. Hayali bir şirket olan OCAK BİLGİSAYAR için bu uygulama hazırlanmıştır.
+Uygulamada 3 kullanıcı türü mevcuttur. Bu kullanıcı türleri ise personel, yönetici ve admindir. 
 
 Personelin amacı firmanın müşteri,kategori,ürün ve satış işlemlerini gerçek kılmaktır.
 Not: Sadece satış personeli satış işlemleri yapabilir ve güncelleyebilir.
