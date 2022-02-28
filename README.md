@@ -1,5 +1,6 @@
 # OcakBilgisayarYonetimPaneli
 
+İlk Web uygulamamdır. 
 Şirket içi ticari yönetim sistemi (otomasyonu) yapılmaya çalışılmıştır.
 3 kullanıcı türü mevcuttur. Bu kullanıcı türleri ise personel, yönetici ve admindir. 
 
