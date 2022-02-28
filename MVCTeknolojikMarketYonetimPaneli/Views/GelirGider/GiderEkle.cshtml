@@ -1,0 +1,60 @@
+﻿@model MVCTeknolojikMarketYonetimPaneli.Models.Model.TBL_GIDER
+
+
+@{
+    ViewBag.Title = "GiderEkle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+
+        window.onload = function () {
+            alert('@ViewBag.Message');
+        };
+    </script>
+}
+
+
+@using (Html.BeginForm("GiderEkle", "GelirGider", FormMethod.Post))
+{
+    
+    <label>Kira Gideri: </label>
+    
+    @Html.TextBoxFor(m => m.GIDERKIRA, new { @class = "form-control" })
+
+    @Html.ValidationMessageFor(m => m.GIDERKIRA, "", new { @style = "color:red" })
+
+    <br/>
+
+    <label>Enerji Gideri: </label>
+
+    @Html.TextBoxFor(m => m.GIDERENERJI, new { @class = "form-control" })
+
+    @Html.ValidationMessageFor(m => m.GIDERENERJI, "", new { @style = "color:red" })
+
+    <br/>
+
+    <label>Personel Gideri: </label>
+
+    @Html.TextBoxFor(m => m.GIDERPERSONEL, new { @class = "form-control" })
+
+    @Html.ValidationMessageFor(m => m.GIDERPERSONEL, "", new { @style = "color:red" })
+
+    <br />
+
+    
+    <label>Diğer Giderler: </label>
+
+    @Html.TextBoxFor(m => m.GIDERDIGER, new { @class = "form-control" })
+
+    @Html.ValidationMessageFor(m => m.GIDERDIGER, "", new { @style = "color:red" })
+
+
+    <br/>
+
+    <button class="btn btn-success">Gideri Ekle</button>
+
+}
+

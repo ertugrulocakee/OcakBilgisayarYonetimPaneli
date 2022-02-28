@@ -1,0 +1,68 @@
+﻿@model MVCTeknolojikMarketYonetimPaneli.Models.Model.TBL_URUN
+
+
+@{
+    ViewBag.Title = "UrunGetir";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+
+        window.onload = function () {
+            alert('@ViewBag.Message');
+        };
+    </script>
+}
+
+
+@using (Html.BeginForm("UrunGetir", "Urun", FormMethod.Post))
+{
+
+
+    <label>Güncellemek istediğiniz ürünün adını giriniz.</label>
+    @Html.TextBoxFor(m => m.URUNAD, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.URUNAD, "", new { @style = "color:red" })
+
+    <br />
+
+
+    <label>Güncellemek istediğiniz ürünün kategorisini seçiniz.</label>
+    @Html.DropDownListFor(m => m.TBL_KATEGORI.KATEGORIID, (List<SelectListItem>)ViewBag.kt, new { @class = "form-control" })
+
+    <br />
+    <label>Güncellemek istediğiniz ürünün stok sayısını giriniz.</label>
+    @Html.TextBoxFor(m => m.URUNSTOK, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.URUNSTOK, "", new { @style = "color:red" })
+
+    <br />
+    <label>Güncellemek istediğiniz ürünün alış fiyatını giriniz.</label>
+    @Html.TextBoxFor(m => m.URUNALISFIYAT, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.URUNALISFIYAT, "", new { @style = "color:red" })
+
+    <br />
+    <label>Güncellemek istediğiniz ürünün satış fiyatını giriniz.</label>
+    @Html.TextBoxFor(m => m.URUNSATISFIYAT, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.URUNSATISFIYAT, "", new { @style = "color:red" })
+
+    <br />
+
+    <label>Güncellemek istediğiniz ürünün marka adını giriniz.</label>
+    @Html.TextBoxFor(m => m.URUNMARKA, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.URUNMARKA, "", new { @style = "color:red" })
+
+    <br />
+    
+    @Html.HiddenFor(m=>m.URUNID)
+
+
+    <button class="btn btn-success">Ürünü Güncelle</button>
+
+
+
+}
+
+

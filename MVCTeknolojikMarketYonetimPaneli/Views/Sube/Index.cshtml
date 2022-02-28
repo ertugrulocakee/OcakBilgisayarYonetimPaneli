@@ -1,0 +1,86 @@
+﻿@using MVCTeknolojikMarketYonetimPaneli.Models.Model
+
+@using PagedList
+@using PagedList.Mvc
+
+@model PagedList.IPagedList<TBL_SUBE>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Index", "Sube", FormMethod.Get))
+{
+
+    <button type="submit" class="btn btn-link" name="btnsubetarih" value="a-z">En Erken kurulana göre Sırala</button>
+    <button type="submit" class="btn btn-link" name="btnsubetarih" value="z-a">En Geç kurulana göre Sırala</button>
+
+    <br /> <br />
+
+
+    <p>
+
+        Şube Adı @Html.TextBox("ad")
+
+   
+        <input type="submit" value="Ara" class="btn-info" />
+
+
+    </p>
+
+
+}
+
+<div class="table-responsive">
+
+    <table class="table table-hover">
+
+        <tr>
+
+            <th>ŞUBE AD</th>
+            <th>ŞUBE TELEFON</th>
+            <th>ŞUBE ŞEHİR</th>
+            <th>KURULUŞ TARİHİ</th>           
+            <th>İŞLEMLER</th>
+
+        </tr>
+
+
+        @foreach (var x in Model)
+        {
+
+            <tr>
+
+
+                <td>@x.SUBEAD</td>
+                <td>@x.SUBETELEFON</td>
+                <td>@x.SUBESEHIR</td>
+                <td>@x.SUBEKURULUSTARIHI</td>
+           
+
+                <td>
+                    <a href="/Sube/SubeSil/@x.SUBEID" class="btn btn-danger">Sil</a>
+                    <a href="/Sube/SubeGuncelle/@x.SUBEID" class="btn btn-success">Güncelle</a>
+                </td>
+
+
+
+            </tr>
+
+
+        }
+
+    </table>
+
+</div>
+
+
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }))
+
+<a href="/Sube/SubeEkle/" class="btn btn-success">Şube Ekle</a>
+
+<a href="/Sube/SilinmisSubeler/" class="btn btn-danger">Silinmiş Şubeler</a>
+
+
+

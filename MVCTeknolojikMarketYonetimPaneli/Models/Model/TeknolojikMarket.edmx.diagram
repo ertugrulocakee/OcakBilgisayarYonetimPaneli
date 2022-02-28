@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="97288c72d4104d86acac16873bfaa397" Name="Diagram1">
+        <EntityTypeShape EntityType="TeknolojikMarketModel.TBL_ADMIN" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeknolojikMarketModel.TBL_BOLUM" Width="1.5" PointX="5.75" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeknolojikMarketModel.TBL_DUYURU" Width="1.5" PointX="5.25" PointY="24.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeknolojikMarketModel.TBL_GELIR" Width="1.5" PointX="3" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeknolojikMarketModel.TBL_GIDER" Width="1.5" PointX="3" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeknolojikMarketModel.TBL_KATEGORI" Width="1.5" PointX="3" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeknolojikMarketModel.TBL_MESAJPERYON" Width="1.5" PointX="10.25" PointY="23.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeknolojikMarketModel.TBL_MESAJYONPER" Width="1.5" PointX="13.25" PointY="23.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeknolojikMarketModel.TBL_MUSTERI" Width="1.5" PointX="3" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeknolojikMarketModel.TBL_PERSONEL" Width="1.5" PointX="8" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeknolojikMarketModel.TBL_SATIS" Width="1.5" PointX="10.25" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeknolojikMarketModel.TBL_SUBE" Width="1.5" PointX="0.75" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeknolojikMarketModel.TBL_URUN" Width="1.5" PointX="5.25" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeknolojikMarketModel.TBL_YONETICI" Width="1.5" PointX="3" PointY="31" IsExpanded="true" />
+        <AssociationConnector Association="TeknolojikMarketModel.FK_TBL_PERSONEL_TBL_BOLUM" ManuallyRouted="false" />
+        <AssociationConnector Association="TeknolojikMarketModel.FK_TBL_DUYURU_TBL_SUBE" ManuallyRouted="false" />
+        <AssociationConnector Association="TeknolojikMarketModel.FK_TBL_DUYURU_TBL_YONETICI" ManuallyRouted="false" />
+        <AssociationConnector Association="TeknolojikMarketModel.FK_TBL_GELIR_TBL_SUBE" ManuallyRouted="false" />
+        <AssociationConnector Association="TeknolojikMarketModel.FK_TBL_GIDER_TBL_SUBE" ManuallyRouted="false" />
+        <AssociationConnector Association="TeknolojikMarketModel.FK_TBL_KATEGORI_TBL_SUBE" ManuallyRouted="false" />
+        <AssociationConnector Association="TeknolojikMarketModel.FK_TBL_URUN_TBL_KATEGORI" ManuallyRouted="false" />
+        <AssociationConnector Association="TeknolojikMarketModel.FK_TBL_MESAJPERYON_TBL_PERSONEL" ManuallyRouted="false" />
+        <AssociationConnector Association="TeknolojikMarketModel.FK_TBL_MESAJPERYON_TBL_YONETICI" ManuallyRouted="false" />
+        <AssociationConnector Association="TeknolojikMarketModel.FK_TBL_MESAJYONPER_TBL_PERSONEL" ManuallyRouted="false" />
+        <AssociationConnector Association="TeknolojikMarketModel.FK_TBL_MESAJYONPER_TBL_YONETICI" ManuallyRouted="false" />
+        <AssociationConnector Association="TeknolojikMarketModel.FK_TBL_MUSTERI_TBL_SUBE" ManuallyRouted="false" />
+        <AssociationConnector Association="TeknolojikMarketModel.FK_TBL_SATIS_TBL_MUSTERI" ManuallyRouted="false" />
+        <AssociationConnector Association="TeknolojikMarketModel.FK_TBL_PERSONEL_TBL_SUBE" ManuallyRouted="false" />
+        <AssociationConnector Association="TeknolojikMarketModel.FK_TBL_SATIS_TBL_PERSONEL" ManuallyRouted="false" />
+        <AssociationConnector Association="TeknolojikMarketModel.FK_TBL_SATIS_TBL_SUBE" ManuallyRouted="false" />
+        <AssociationConnector Association="TeknolojikMarketModel.FK_TBL_SATIS_TBL_URUN" ManuallyRouted="false" />
+        <AssociationConnector Association="TeknolojikMarketModel.FK_TBL_URUN_TBL_SUBE" ManuallyRouted="false" />
+        <AssociationConnector Association="TeknolojikMarketModel.FK_TBL_YONETICI_TBL_SUBE" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,102 @@
+﻿@using MVCTeknolojikMarketYonetimPaneli.Models.Model
+
+@using PagedList
+@using PagedList.Mvc
+
+@model PagedList.IPagedList<TBL_YONETICI>
+
+@{
+    ViewBag.Title = "SilinmisYoneticiler";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("SilinmisYoneticiler", "Yonetici", FormMethod.Get))
+{
+
+    <p>
+
+        Yönetici Ad @Html.TextBox("ad")
+
+        Yönetici Soyad @Html.TextBox("soyad")
+
+        <input type="submit" value="Ara" class="btn-info" />
+
+
+    </p>
+
+
+}
+
+<div class="table-responsive">
+
+    <table class="table table-hover">
+
+        <tr>
+
+            <th>YÖNETİCİ AD</th>
+            <th>YÖNETİCİ SOYAD</th>
+            <th>ŞUBE</th>
+            <th>TELEFON</th>
+            <th>MAIL</th>
+            <th>TC</th>
+            <th>MAAŞ</th>
+            <th>CİNSİYET</th>
+            <th>YAŞ</th>
+            <th>BAŞLANGIÇ TARİHİ</th>
+            <th>AYRILIŞ TARİHİ</th>
+            <th>İŞLEMLER</th>
+
+
+        </tr>
+
+
+        @foreach (var x in Model)
+        {
+
+            <tr>
+
+
+                <td>@x.YONETICIAD</td>
+                <td>@x.YONETICISOYAD</td>
+                <td>@x.TBL_SUBE.SUBEAD</td>
+                <td>@x.YONETICITELEFON</td>
+                <td>@x.YONETICIMAIL</td>
+                <td>@x.YONETICITC</td>
+                <td>@x.YONETICIMAAS TL</td>
+                <td>@x.YONETICICINSIYET</td>
+                <td>@x.YONETICIYAS</td>
+                <td>@x.YONETICIBASLANGICTARIHI</td>
+                <td>@x.YONETICIBITISTARIHI</td>
+
+                <td>
+                    <a href="/Yonetici/YoneticiyiGeriGetir/@x.YONETICIID" class="btn btn-success">Geri Getir</a>
+                 
+                </td>
+
+
+
+            </tr>
+
+
+        }
+
+
+
+
+
+
+    </table>
+
+</div>
+
+
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("SilinmisYoneticiler", new { sayfa }))
+
+
+
+
+
+
+
+
+

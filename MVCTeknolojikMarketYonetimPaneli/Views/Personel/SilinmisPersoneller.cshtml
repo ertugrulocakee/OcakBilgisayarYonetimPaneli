@@ -1,0 +1,97 @@
+﻿@using MVCTeknolojikMarketYonetimPaneli.Models.Model
+
+@using PagedList
+@using PagedList.Mvc
+
+@model PagedList.IPagedList<TBL_PERSONEL>
+
+
+@{
+    ViewBag.Title = "SilinmisPersoneller";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("SilinmisPersoneller", "Personel", FormMethod.Get))
+{
+
+    <p>
+
+        Personel Ad @Html.TextBox("ad")
+
+        Personel Soyad @Html.TextBox("soyad")
+
+        <input type="submit" value="Ara" class="btn-info" />
+
+
+    </p>
+
+
+}
+
+<div class="table-responsive">
+
+    <table class="table table-hover">
+
+        <tr>
+
+            <th>PERSONEL AD</th>
+            <th>PERSONEL SOYAD</th>
+            <th>ŞUBE</th>
+            <th>BÖLÜM</th>
+            <th>TELEFON</th>
+            <th>MAIL</th>
+            <th>TC</th>
+            <th>MAAŞ</th>
+            <th>CİNSİYET</th>
+            <th>YAŞ</th>
+            <th>İŞE BAŞLANGIÇ TARİHİ</th>
+            <th>İŞTEN AYRILIŞ TARİHİ</th>
+            <th>İŞLEMLER</th>
+
+
+        </tr>
+
+
+        @foreach (var x in Model)
+        {
+
+            <tr>
+
+
+                <td>@x.PERSONELAD</td>
+                <td>@x.PERSONELSOYAD</td>
+                <td>@x.TBL_SUBE.SUBEAD</td>
+                <td>@x.TBL_BOLUM.BOLUMAD</td>
+                <td>@x.PERSONELTELEFON</td>
+                <td>@x.PERSONELMAIL</td>
+                <td>@x.PERSONELTC</td>
+                <td>@x.PERSONELMAAS TL</td>
+                <td>@x.PERSONELCINSIYET</td>
+                <td>@x.PERSONELYAS</td>
+                <td>@x.PERSONELBASLANGICTARIHI</td>
+                <td>@x.PERSONELBITISTARIHI</td>
+
+                <td>
+                    <a href="/Personel/PersonelGeriGetir/@x.PERSONELID" class="btn btn-success">Geri Getir</a>
+                    
+                </td>
+
+
+
+            </tr>
+
+
+        }
+
+
+
+
+
+
+    </table>
+
+</div>
+
+
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("SilinmisPersoneller", new { sayfa }))
+

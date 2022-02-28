@@ -1,0 +1,89 @@
+﻿@using MVCTeknolojikMarketYonetimPaneli.Models.Model
+
+@using PagedList
+
+@using PagedList.Mvc
+
+@model PagedList.IPagedList<TBL_MESAJYONPER>
+
+@{
+    ViewBag.Title = "SilinmisGidenMesajlar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm("SilinmisGidenMesajlar", "MesajYonetici", FormMethod.Get))
+{
+
+    <button type="submit" class="btn btn-link" name="btnmesajtarih" value="a-z">En Erken Mesaja göre Sırala</button>
+    <button type="submit" class="btn btn-link" name="btnmesajtarih" value="z-a">En Geç Mesaja göre Sırala</button>
+
+    <br /> <br />
+
+    <p>
+
+        Mesaj Başlığı @Html.TextBox("mesajbasligi")
+
+        <input type="submit" value="Ara" class="btn-info" />
+
+    </p>
+
+
+}
+
+<div class="table-responsive">
+
+    <table class="table table-hover">
+
+        <tr>
+
+            <th>YONETICI</th>
+            <th>PERSONEL</th> 
+            <th>MESAJ BASLIGI</th>
+            <th>TARIH</th>
+            <th>İŞLEMLER</th>
+
+        </tr>
+
+
+        @foreach (var x in Model)
+        {
+
+            <tr>
+
+                <td>@x.TBL_YONETICI.YONETICIAD @x.TBL_YONETICI.YONETICISOYAD</td>
+                <td>@x.TBL_PERSONEL.PERSONELAD @x.TBL_PERSONEL.PERSONELSOYAD</td>
+                <td>@x.MESAJBASLIGI</td>
+                <td>@x.TARIH</td>
+
+                <td>
+                    <a href="/MesajYonetici/GidenMesajiGeriGetir/@x.MESAJID" class="btn btn-success">Mesajı Geri Getir</a>
+                    <a href="/MesajYonetici/GidenMesajiGoruntule/@x.MESAJID" class="btn btn-info">Mesajı Görüntüle</a>
+                </td>
+
+
+
+            </tr>
+
+
+        }
+
+
+
+
+
+
+    </table>
+
+</div>
+
+
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("SilinmisGidenMesajlar", new { sayfa }))
+
+
+
+
+
+
+
+

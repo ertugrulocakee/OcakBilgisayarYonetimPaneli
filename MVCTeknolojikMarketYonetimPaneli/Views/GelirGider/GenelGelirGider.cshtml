@@ -1,0 +1,77 @@
+﻿@using MVCTeknolojikMarketYonetimPaneli.Models.EkModel;
+
+
+@model Tuple<ZamanaGoreGelir, ZamanaGoreGider, KarZarar>
+
+
+@{
+    ViewBag.Title = "GenelGelirGider";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel-group">
+    <label>FİRMANIN GELİR-GİDER BİLGİLERİ</label>
+
+    <br/>
+
+    <div class="panel panel-success">
+        <div class="panel-heading">Firmanın bu aylık geliri</div>
+        <div class="panel-body">@Model.Item1.AylikGelir</div>
+
+    </div>
+    <div class="panel panel-danger">
+        <div class="panel-heading">Firmanın bu aylık gideri</div>
+        <div class="panel-body">@Model.Item2.AylikGider</div>
+
+    </div>
+
+    <div class="panel panel-warning">
+        <div class="panel-heading">Firmanın bu aylık kar-zarar bilgisi</div>
+        <div class="panel-body">@Model.Item3.AylikKarZarar</div>
+
+    </div>
+
+    <br />
+
+    <div class="panel panel-success">
+        <div class="panel-heading">Firmanın bu yıllık geliri</div>
+        <div class="panel-body">@Model.Item1.YillikGelir</div>
+
+    </div>
+    <div class="panel panel-danger">
+        <div class="panel-heading">Firmanın bu yıllık gideri</div>
+        <div class="panel-body">@Model.Item2.YillikGider</div>
+
+    </div>
+
+    <div class="panel panel-warning">
+        <div class="panel-heading">Firmanın bu yıllık kar-zarar bilgisi</div>
+        <div class="panel-body">@Model.Item3.YillikKarZarar</div>
+
+    </div>
+
+    <br />
+
+    <div class="panel panel-success">
+        <div class="panel-heading">Firmanın şu ana kadar olan toplam geliri</div>
+        <div class="panel-body">@Model.Item1.ToplamGelir</div>
+
+    </div>
+    <div class="panel panel-danger">
+        <div class="panel-heading">Firmanın şu ana kadar olan toplam gideri</div>
+        <div class="panel-body">@Model.Item2.ToplamGider</div>
+
+    </div>
+
+    <div class="panel panel-warning">
+        <div class="panel-heading">Firmanın şu ana kadar olan kar-zarar bilgisi</div>
+        <div class="panel-body">@Model.Item3.KarZararDengesi</div>
+
+    </div>
+
+
+</div>
+
+
+
+

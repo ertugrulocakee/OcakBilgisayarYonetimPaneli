@@ -1,0 +1,86 @@
+﻿@model MVCTeknolojikMarketYonetimPaneli.Models.EkModel.Mail
+
+@{
+    ViewBag.Title = "Giris";
+    Layout = "~/Views/Shared/_LayoutGiris.cshtml";
+}
+
+<br/>
+<br/>
+
+<div style="text-align:center">
+
+     <img src="~/Resimler/ocak_logo.png" alt="markaResmi" style="height:200px;width:400px" />
+   
+</div>
+
+
+
+<h1>Yönetim Paneli</h1>
+
+<div class=" w3l-login-form">
+    <h2>Giriş Yap</h2>
+    <form action="/Giris/Giris" method="POST">
+
+        <div class=" w3l-form-group">
+            <label>Kullanıcı Adı:</label>
+            <div class="group">
+                <i class="fas fa-user"></i>
+                <input type="text" class="form-control" placeholder="Kullanıcı Adı" required="required" name="KULLANICIADI" />
+            </div>
+        </div>
+        <div class=" w3l-form-group">
+            <label>Şifre:</label>
+            <div class="group">
+                <i class="fas fa-unlock"></i>
+                <input type="password" class="form-control" placeholder="Şifre" required="required" name="SIFRE"/>
+            </div>
+        </div>
+
+       
+       
+        <button type="submit" name="btn1" value="Personel" >Personel ile Giriş Yap</button>
+        <button type="submit" name="btn1" value="Yönetici" style="margin-top:3px" >Yönetici ile Giriş Yap</button>
+        <button type="submit" name="btn1" value="Admin" style="margin-top:3px" >Admin ile Giriş Yap</button> 
+
+     
+    </form>
+
+    <br/>
+    <br/>
+  
+    <button onclick="unuttum()">Şifreni mi unuttun ?</button>
+
+
+    <div id="benimDIV">
+
+       @using (Html.BeginForm("SifreUnutma", "Giris", FormMethod.Post))
+       { 
+           <div class=" w3l-form-group">
+                <label>Kullanıcı Adı:</label>
+                <div class="group">
+                    <i class="fas fa-user-circle"></i>
+                    @Html.TextBoxFor(m => m.KullaniciAdi, new { @class = "form-control", @placeholder="Kullanıcı Adı"})
+                    
+                   </div>
+            </div>
+    
+           
+         <button>Onayla</button>
+
+       }
+
+    </div>
+
+
+</div>
+
+
+<footer>
+
+  
+    <p class="copyright-agileinfo"> &copy;2009 - 2022 Ocak Bilgisayar </p>
+
+
+</footer>
+

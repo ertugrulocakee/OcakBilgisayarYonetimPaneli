@@ -1,0 +1,40 @@
+﻿@model MVCTeknolojikMarketYonetimPaneli.Models.Model.TBL_MESAJPERYON
+
+@{
+    ViewBag.Title = "YeniMesaj";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+
+        window.onload = function () {
+            alert('@ViewBag.Message');
+        };
+    </script>
+}  
+
+
+@using (Html.BeginForm("YeniMesaj", "Mesaj", FormMethod.Post))
+{
+    
+    <label>Mesaj Başlığı</label>
+    
+    @Html.TextBoxFor(m => m.MESAJBASLIGI, new { @class="form-control"})
+    @Html.ValidationMessageFor(m => m.MESAJBASLIGI, "", new {@style = "color:red" })
+    
+    <br/>
+    
+    <label>Mesaj İçeriği</label>
+    
+    @Html.TextAreaFor(m => m.MESAJICERIGI, new { rows ="5", @class = "form-control"})
+    @Html.ValidationMessageFor(m => m.MESAJICERIGI, "", new { @style = "color:red" })
+    
+    <br/>
+
+    <button class="btn btn-success">Şube Yöneticisine Mesajını İlet</button>
+    
+}
+
+

@@ -1,0 +1,87 @@
+﻿@using MVCTeknolojikMarketYonetimPaneli.Models.Model;
+
+@using PagedList;
+@using PagedList.Mvc;
+
+@model PagedList.IPagedList<TBL_URUN>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+  
+
+@using (Html.BeginForm("Index", "Urun", FormMethod.Get))
+{
+   
+   <p>
+
+       Ürün Ad @Html.TextBox("ad")
+       
+       <input type="submit" value="Ara" class="btn-info" />
+
+   </p>
+    
+}
+
+<div class="table-responsive">
+
+    <table class="table table-hover">
+
+
+        <tr>
+
+            <th>URUN ADI</th>
+            <th>URUN KATEGORI</th>
+            <th>URUN MARKA</th>
+            <th>URUN SUBE</th>
+            <th>URUN STOK</th>
+            <th>ALIŞ FİYATI</th>
+            <th>SATIŞ FİYATI</th>
+            <th>İŞLEMLER</th>
+
+
+
+        </tr>
+
+
+        @foreach (var x in Model)
+        {
+
+            <tr>
+
+
+                <td>@x.URUNAD</td>
+                <td>@x.TBL_KATEGORI.KATEGORIAD</td>
+                <td>@x.URUNMARKA</td>
+                <td>@x.TBL_SUBE.SUBEAD</td>
+                <td>@x.URUNSTOK</td>
+                <td>@x.URUNALISFIYAT</td>
+                <td>@x.URUNSATISFIYAT</td>
+                <td>
+                    <a href="/Urun/UrunSil/@x.URUNID" class="btn btn-danger">Ürünü Sil</a>
+                    <a href="/Urun/UrunGetir/@x.URUNID" class="btn btn-success">Ürünü Güncelle</a>
+                </td>
+
+            </tr>
+
+
+
+        }
+
+
+
+
+    </table>
+</div>
+
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }))
+    
+    <br/>
+
+    <a href="/Urun/YeniUrun/" class="btn btn-success">Yeni Ürün Ekle</a>
+    
+    <a href="/Urun/SilinmisUrunler/" class="btn btn-danger">Silinmiş Ürünler</a>

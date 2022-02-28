@@ -1,0 +1,46 @@
+﻿@model MVCTeknolojikMarketYonetimPaneli.Models.Model.TBL_YONETICI
+
+@{
+    ViewBag.Title = "SifreGuncelle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+
+        window.onload = function () {
+            alert('@ViewBag.Message');
+        };
+    </script>
+}
+
+
+@using (Html.BeginForm("SifreGuncelle", "ProfilYonetici", FormMethod.Post))
+{
+
+    <label>Kullanıcı adı</label>
+
+    @Html.TextBoxFor(x => x.KULLANICIADI, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.KULLANICIADI, "", new { @style = "color:red" })
+
+    <br />
+    <br />
+
+    <label>Şifre</label>
+
+    @Html.TextBoxFor(x => x.SIFRE, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.SIFRE, "", new { @style = "color:red" })
+
+    @Html.HiddenFor(x => x.YONETICIID)
+
+    <br />
+
+    <br />
+
+    <button class="btn btn-success">Güncelle</button>
+
+
+
+}

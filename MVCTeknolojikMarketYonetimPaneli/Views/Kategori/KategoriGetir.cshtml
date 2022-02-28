@@ -1,0 +1,37 @@
+﻿@model MVCTeknolojikMarketYonetimPaneli.Models.Model.TBL_KATEGORI
+
+@{
+    ViewBag.Title = "KategoriGetir";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+
+        window.onload = function () {
+            alert('@ViewBag.Message');
+        };
+    </script>
+}
+
+
+@using (Html.BeginForm("KategoriGetir", "Kategori", FormMethod.Post))
+{
+
+    <label>Kategori Adı</label>
+
+    @Html.TextBoxFor(m => m.KATEGORIAD, new { @class = "form-control" })
+
+    @Html.ValidationMessageFor(m => m.KATEGORIAD, "", new { @style = "color:red" })
+    
+    @Html.HiddenFor(m=>m.KATEGORIID)
+
+    <br />
+
+    <button class="btn btn-success">Kategoriyi Güncelle</button>
+
+
+}
+
+

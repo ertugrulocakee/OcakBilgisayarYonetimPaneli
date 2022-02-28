@@ -1,0 +1,33 @@
+﻿@model MVCTeknolojikMarketYonetimPaneli.Models.Model.TBL_GELIR
+
+@{
+    ViewBag.Title = "GelirEkle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+
+        window.onload = function () {
+            alert('@ViewBag.Message');
+        };
+    </script>
+}
+
+@using (Html.BeginForm("GelirEkle", "GelirGider", FormMethod.Post))
+{
+
+    <label>Satış Geliri: </label>
+
+    @Html.TextBoxFor(m => m.SATISKARI, new { @class = "form-control" })
+
+    @Html.ValidationMessageFor(m => m.SATISKARI, "", new { @style = "color:red" })
+
+    <br />
+
+
+    <button class="btn btn-success">Geliri Ekle</button>
+
+}
+

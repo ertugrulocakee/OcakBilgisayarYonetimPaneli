@@ -1,0 +1,47 @@
+﻿@model MVCTeknolojikMarketYonetimPaneli.Models.Model.TBL_SATIS
+
+
+@{
+    ViewBag.Title = "SatisGetir";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@if (ViewBag.Message != null)
+{
+
+    <script type="text/javascript">
+
+
+        window.onload = function(){
+
+              alert('@ViewBag.Message');
+
+        }
+
+    </script>
+
+}
+
+
+@using (Html.BeginForm("SatisGetir", "Satis", FormMethod.Post))
+{
+
+
+    <label>Satış yapılan müşteriyi değiştirin/güncelleyin.</label>
+    @Html.DropDownListFor(m => m.TBL_MUSTERI.MUSTERIID, (List<SelectListItem>)ViewBag.mst, new { @class = "form-control" });
+
+
+    <label>Satış yapılan ürünü değiştirin/güncelleyin.</label>
+    @Html.DropDownListFor(m => m.TBL_URUN.URUNID, (List<SelectListItem>)ViewBag.urn, new { @class = "form-control" });
+
+
+    <br />
+
+    
+    @Html.HiddenFor(m=>m.SATISID)
+
+    <button class="btn btn-success">Satış İşlemini Güncelle</button>
+
+}
+

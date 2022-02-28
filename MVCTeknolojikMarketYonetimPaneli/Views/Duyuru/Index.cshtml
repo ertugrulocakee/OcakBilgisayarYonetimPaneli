@@ -1,0 +1,104 @@
+﻿@using MVCTeknolojikMarketYonetimPaneli.Models.Model
+
+@using PagedList
+
+@using PagedList.Mvc
+
+@model PagedList.IPagedList<TBL_DUYURU>
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Index", "Duyuru", FormMethod.Get))
+{
+
+    <button type="submit" class="btn btn-link" name="btnmesajtarih" value="a-z">En Erken Duyuruya göre Sırala</button>
+    <button type="submit" class="btn btn-link" name="btnmesajtarih" value="z-a">En Geç Duyuruya göre Sırala</button>
+
+  
+}
+
+<br /> <br />
+
+<div class="table-responsive">
+
+    <table class="table table-hover">
+
+        <tr>
+
+            <th>YONETICI</th>
+            <th>SUBE</th>
+            <th>TARIH</th>
+            <th>İŞLEMLER</th>
+
+        </tr>
+
+
+        @foreach (var x in Model)
+        {
+
+            <tr>
+
+
+                <td>@x.TBL_YONETICI.YONETICIAD @x.TBL_YONETICI.YONETICISOYAD</td>
+                <td>@x.TBL_SUBE.SUBEAD</td>
+                <td>@x.TARIH</td>
+             
+
+                <td>
+                    <a href="/Duyuru/DuyuruGoruntule/@x.DUYURUID" class="btn btn-info">Duyuru Görüntüle</a>                   
+                </td>
+
+               @if (User.IsInRole("Yönetici"))
+               {
+
+                <td>
+                    <a href="/Duyuru/DuyuruSil/@x.DUYURUID" class="btn btn-danger">Duyuru Sil</a>
+                </td>
+
+               }
+               
+                @if (User.IsInRole("Yönetici"))
+                {
+
+                    <td>
+                        <a href="/Duyuru/DuyuruGuncelle/@x.DUYURUID" class="btn btn-success">Duyuru Güncelle</a>
+                    </td>
+
+                }
+
+
+            </tr>
+
+
+        }
+
+
+
+
+
+
+    </table>
+
+</div>
+
+
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }))
+
+
+@if (User.IsInRole("Yönetici"))
+{
+
+  <a href="/Duyuru/DuyuruEkle/" class="btn btn-success">Duyuru Ekle</a>
+  
+}
+
+@if (User.IsInRole("Yönetici"))
+{
+
+    <a href="/Duyuru/SilinmisDuyurular/" class="btn btn-danger">Silinmiş Duyurular</a>
+
+}

@@ -1,0 +1,60 @@
+﻿@using MVCTeknolojikMarketYonetimPaneli.Models.Model
+
+@model Tuple<TBL_MESAJPERYON, MVCTeknolojikMarketYonetimPaneli.Models.Model.TBL_MESAJYONPER>
+
+
+
+@{
+    ViewBag.Title = "MesajGoruntule";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+
+        window.onload = function () {
+            alert('@ViewBag.Message');
+        };
+    </script>
+}
+
+
+
+<div class="panel panel-info">
+
+
+
+    <div class="panel-heading" style="text-transform:uppercase; text-decoration-color:black; text-align:center; font:bold">@Model.Item1.MESAJBASLIGI</div>
+    <div class="panel-body">@Model.Item1.MESAJICERIGI</div>
+
+
+</div>
+
+<br />
+
+
+@using (Html.BeginForm("MesajGoruntule", "MesajYonetici", FormMethod.Post))
+{
+
+
+    <label>Cevap:</label>
+    @Html.TextAreaFor(m => m.Item2.MESAJICERIGI, new { rows = "5", @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.Item2.MESAJICERIGI, "", new { @style = "color:red" })
+
+    @Html.HiddenFor(m => m.Item2.MESAJBASLIGI, new { Value = @Model.Item1.MESAJBASLIGI })
+    @Html.ValidationMessageFor(m => m.Item2.MESAJBASLIGI, "", new { @style = "color:red" })
+
+    @Html.HiddenFor(m => m.Item1.MESAJID);
+    
+    @Html.HiddenFor(m=> m.Item1.TBL_PERSONEL.KULLANICIADI)
+
+    <br />
+    <button class="btn btn-success">Cevabını Personele Gönder</button>
+
+}
+
+
+

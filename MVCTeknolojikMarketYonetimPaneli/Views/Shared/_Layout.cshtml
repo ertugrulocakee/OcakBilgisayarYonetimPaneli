@@ -1,0 +1,364 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Yönetim Paneli</title>
+
+    <link rel="icon" type="image/png" href="~/Resimler/ocak_logo.png" style="width:16px;height:16px">
+
+    <!-- Bootstrap CSS CDN -->
+    <link href="~/Dosyalar1/bootstrap.min.css" rel="stylesheet" />
+    <!-- Our Custom CSS -->
+    <link href="~/Dosyalar1/sidebar/bootstrap-3/style5.css" rel="stylesheet" />
+
+</head>
+<body>
+
+    <div class="wrapper">
+        <!-- Sidebar Holder -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+
+                <div style="text-align:center">
+                    <img src="~/Resimler/ocak_logo.png" alt="markaResmi" style="height:50px;width:100px" />
+                    <br/>
+
+                    <h3>Yönetim Paneli</h3>
+
+                </div>
+
+            </div>
+
+            <ul class="list-unstyled components">
+                <li style="text-align:center">
+                   İŞLEMLER
+                </li>  
+                
+                @if (User.IsInRole("Personel") || User.IsInRole("Yönetici") || User.IsInRole("Admin"))
+                {
+                    <li>
+                        <a href="/AnaSayfa/Index/">Ana Sayfa</a>
+                    </li>
+                }
+                
+          
+                              
+               @if (User.IsInRole("Personel"))
+               {
+                    <li>
+                        <a href="/Profil/Index/">Profil</a>
+                    </li>
+                }
+                
+                @if (User.IsInRole("Yönetici"))
+                {
+                    <li>
+                        <a href="/ProfilYonetici/Index/">Profil</a>
+                    </li>
+                }
+                
+                @if (User.IsInRole("Admin"))
+                {
+
+                    <li>
+                        <a href="/ProfilAdmin/Index/">Profil</a>
+                    </li>
+
+                }
+                
+                @if (User.IsInRole("Admin"))
+                {
+
+                    <li class="active">
+                        <a href="#adminSubmenu" data-toggle="collapse" aria-expanded="false">Admin İşlemleri</a>
+                        <ul class="collapse list-unstyled" id="adminSubmenu">
+                            <li><a href="/Admin/Index/">Adminleri Listele</a></li>
+                            <li><a href="/Admin/AdminEkle/">Admin Ekle</a></li>
+                        </ul>
+                    </li>
+
+                }
+                
+                @if (User.IsInRole("Admin"))
+                {
+
+                    <li class="active">
+                        <a href="#bolumSubmenu" data-toggle="collapse" aria-expanded="false">Bölüm İşlemleri</a>
+                        <ul class="collapse list-unstyled" id="bolumSubmenu">
+
+                            <li>
+                                <a href="/Bolum/Index/">Bölümleri Listele</a>
+                            </li>
+
+
+                            <li>
+                                <a href="/Bolum/BolumEkle/">Bölüm Ekle</a>
+                            </li>
+
+                        </ul>
+
+                    </li>
+
+                }
+
+                
+                @if (User.IsInRole("Admin"))
+                {
+
+                    <li class="active">
+                        <a href="#subeSubmenu" data-toggle="collapse" aria-expanded="false">Şube İşlemleri</a>
+                        <ul class="collapse list-unstyled" id="subeSubmenu">
+                            <li><a href="/Sube/Index/">Şubeleri Listele</a></li>
+                            <li><a href="/Sube/SubeEkle/">Şube Ekle</a></li>
+                        </ul>
+                    </li>
+
+                }
+                
+                @if (User.IsInRole("Admin"))
+                {
+
+                    <li class="active">
+                        <a href="#yoneticiSubmenu" data-toggle="collapse" aria-expanded="false">Yönetici İşlemleri</a>
+                        <ul class="collapse list-unstyled" id="yoneticiSubmenu">
+                            <li><a href="/Yonetici/Index/">Yöneticileri Listele</a></li>
+                            <li><a href="/Yonetici/YoneticiEkle/">Yönetici Ekle</a></li>
+                        </ul>
+                    </li>
+
+                }
+
+            
+                @if (User.IsInRole("Personel") || User.IsInRole("Yönetici"))
+                {
+                    <li>
+                        <a href="/Duyuru/Index/">Duyurular</a>
+                    </li>
+                    
+                }
+                
+                @if (User.IsInRole("Personel") || User.IsInRole("Yönetici"))
+                {
+                <li class="active">
+                    <a href="#mesajSubmenu" data-toggle="collapse" aria-expanded="false">Mesajlar</a>
+                    <ul class="collapse list-unstyled" id="mesajSubmenu">
+                        @if (User.IsInRole("Personel"))
+                        {
+                        <li><a href="/Mesaj/Index/">Şube Yöneticisinden Gelen Mesajlar</a></li>
+                        <li><a href="/Mesaj/GidenMesajlar/">Şube Yöneticisine Giden Mesajlar</a></li>
+                        } 
+
+                        @if (User.IsInRole("Yönetici"))
+                        {
+                            <li><a href="/MesajYonetici/Index/">Personelden Gelen Mesajlar</a></li>
+                            <li><a href="/MesajYonetici/GidenMesajlar/">Personele Giden Mesajlar</a></li>
+                        } 
+                                                  
+                    </ul>
+                </li>
+                }
+                
+                @if (User.IsInRole("Personel"))
+                {
+                <li class="active">
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Müşteri İşlemleri</a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                        <li><a href="/Musteri/Index/">Müşterileri Listele</a></li>
+                        <li><a href="/Musteri/YeniMusteri/">Müşteri Ekle</a></li>
+                    </ul>
+                </li>
+                }
+                
+                @if (User.IsInRole("Personel"))
+                {
+                <li class="active">
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Kategori İşlemleri</a>
+                    <ul class="collapse list-unstyled" id="pageSubmenu">
+                        <li><a href="/Kategori/Index/">Kategorileri Listele</a></li>
+                        <li><a href="/Kategori/YeniKategori/">Kategori Ekle</a></li>
+                    </ul>
+                </li>
+                    
+                }
+                
+                @if (User.IsInRole("Personel"))
+                {
+                <li class="active">
+                    <a href="#productSubmenu" data-toggle="collapse" aria-expanded="false">Ürün İşlemleri</a>
+                    <ul class="collapse list-unstyled" id="productSubmenu">
+                        <li><a href="/Urun/Index/">Ürünleri Listele</a></li>
+                        <li><a href="/Urun/YeniUrun/">Ürün Ekle</a></li>
+                    </ul>
+                </li>
+                }
+                    
+                @if (User.IsInRole("Personel"))
+                {
+                <li class="active">
+                    <a href="#satisSubmenu" data-toggle="collapse" aria-expanded="false">Satış İşlemleri</a>
+                    <ul class="collapse list-unstyled" id="satisSubmenu">
+                        <li><a href="/Satis/Index/">Satış İşlemlerini Listele</a></li>
+                        <li><a href="/Satis/YeniSatis/">Satış İşlemi Ekle</a></li>
+                    </ul>
+                </li>
+                }
+                
+                @if (User.IsInRole("Yönetici"))
+                {
+
+                    <li class="active">
+                        <a href="#personelSubmenu" data-toggle="collapse" aria-expanded="false">Personel İşlemleri</a>
+                        <ul class="collapse list-unstyled" id="personelSubmenu">
+                            <li><a href="/Personel/Index/">Personelleri Listele</a></li>
+                            <li><a href="/Personel/YeniPersonel/">Personel Ekle</a></li>
+                        </ul>
+                    </li>
+
+                }
+                
+                
+            
+                    
+                    @if (User.IsInRole("Yönetici"))
+                    {
+
+                        <li><a href="/GelirGider/Index/">Şube Geliri-Gideri</a></li>
+
+                        <li><a href="/Istatistik/Index/">Şube İstatistiği</a></li>
+
+                    }
+                    
+                    @if (User.IsInRole("Admin"))
+                    {
+
+                        <li><a href="/GelirGider/GenelGelirGider/">Firma Geliri-Gideri</a></li>
+
+                        <li><a href="/Istatistik/GenelIstatistik/">Firma İstatistiği</a></li>
+
+                    }
+
+   
+
+                @if (User.IsInRole("Personel") || User.IsInRole("Yönetici") || User.IsInRole("Admin"))
+                {
+
+                <li>
+                    <a href="/Cikis/Index/">Çıkış</a>
+                </li>
+                }
+                    
+            </ul>
+
+
+
+        </nav>
+
+        <!-- Page Content Holder -->
+        <div id="content">
+
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+
+                    <div class="navbar-header">
+                        <button type="button" id="sidebarCollapse" class="navbar-btn">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </button>
+                    </div>
+
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right">
+                          @if (User.IsInRole("Personel"))
+                          {
+                            <li><a href="/Profil/Index/">Profil</a></li>
+                           }
+                           
+                            @if (User.IsInRole("Yönetici"))
+                            {
+                                <li>
+                                    <a href="/ProfilYonetici/Index/">Profil</a>
+                                </li>
+                            }
+                            
+                            @if (User.IsInRole("Admin"))
+                            {
+
+                                <li>
+                                    <a href="/ProfilAdmin/Index/">Profil</a>
+                                </li>
+
+                            }
+                           
+                           @if (User.IsInRole("Personel"))
+                           {
+                            <li><a href="/Duyuru/Index/">Duyurular</a></li>
+                           }
+                           @if (User.IsInRole("Personel"))
+                           {
+                            <li><a href="/Mesaj/Index/">Şube Yöneticisinden Gelen Mesajlar</a></li>
+                           }
+                           
+                            @if (User.IsInRole("Yönetici"))
+                            {
+                                <li><a href="/MesajYonetici/Index/">Personelden Gelen Mesajlar</a></li>
+                                                                
+                            } 
+                           
+
+                            @if (User.IsInRole("Personel") || User.IsInRole("Yönetici") || User.IsInRole("Admin"))
+                            {
+                            <li><a href="/Cikis/Index/">Çıkış</a></li>
+                            }
+ 
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            @RenderBody()
+
+
+
+        </div>
+
+    </div>
+
+    <footer style="background-color:#526098">
+
+
+            <img src="~/Resimler/ocak_logo.png" alt="markaResmi" style="height:50px;width:100px" />
+
+
+
+
+        <div style="color:white">
+
+            <h5>© 2009 - 2022 Ocak Bilgisayar</h5>
+            <h6>Bu site, Ocak Bilişim Yazılımı ile hazırlanmıştır. © 2009 - 2022 Her Hakkı Saklıdır. İzinsiz Kopyalanamaz.</h6>
+        </div>
+
+    </footer>
+
+   
+    <!-- jQuery CDN -->
+    <script src="~/Dosyalar1/jquery-1.12.0.min.js"></script>
+    <!-- Bootstrap Js CDN -->
+    <script src="~/Dosyalar1/js-bootstrap.min.js"></script>
+ 
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+                $(this).toggleClass('active');
+            });
+        });
+    </script>
+
+
+</body>
+</html>

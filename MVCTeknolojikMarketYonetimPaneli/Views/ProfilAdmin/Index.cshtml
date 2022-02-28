@@ -1,0 +1,31 @@
+﻿@using MVCTeknolojikMarketYonetimPaneli.Models.Model
+
+@model TBL_ADMIN
+
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="panel-group">
+    <label>ADMIN BİLGİLERİ</label>
+    <br/>
+    <div class="panel panel-primary">
+        <div class="panel-heading">@Model.KULLANICIADI</div>
+        <div class="panel-body">@Model.KULLANICITIPI</div>
+        
+    </div>
+   
+
+</div>
+
+<br />
+
+<a href="/ProfilAdmin/SifreGuncelle/@Model.ADMINID" class="btn btn-success">Kullanıcı adı ve şifre güncelle</a>
+
+
+
+

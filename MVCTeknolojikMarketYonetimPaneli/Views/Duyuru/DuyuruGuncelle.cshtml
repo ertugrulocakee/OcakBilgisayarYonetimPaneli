@@ -1,0 +1,36 @@
+﻿@model MVCTeknolojikMarketYonetimPaneli.Models.Model.TBL_DUYURU
+
+@{
+    ViewBag.Title = "DuyuruGuncelle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+
+        window.onload = function () {
+            alert('@ViewBag.Message');
+        };
+    </script>
+}
+
+
+@using (Html.BeginForm("DuyuruGuncelle", "Duyuru", FormMethod.Post))
+{
+
+    <label>Duyuru İçeriği</label>
+
+    @Html.TextAreaFor(m => m.DUYURUICERIGI, new { rows = "5", @class = "form-control" })
+
+    @Html.ValidationMessageFor(m => m.DUYURUICERIGI, "", new { @style = "color:red" })
+    
+    @Html.HiddenFor(m=>m.DUYURUID)
+    
+    <br />
+
+    <button class="btn btn-success">Duyuruyu Güncelle</button>
+
+
+}

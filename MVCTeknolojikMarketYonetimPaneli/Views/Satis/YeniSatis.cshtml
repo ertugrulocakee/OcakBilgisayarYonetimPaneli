@@ -1,0 +1,45 @@
+﻿
+@model MVCTeknolojikMarketYonetimPaneli.Models.Model.TBL_SATIS
+
+
+@{
+    ViewBag.Title = "YeniSatis";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@if (ViewBag.Message != null)
+{
+    
+    <script type="text/javascript">
+
+
+        window.onload = function(){
+
+              alert('@ViewBag.Message');
+
+        }
+
+    </script>
+        
+}
+
+
+@using (Html.BeginForm("YeniSatis", "Satis", FormMethod.Post))
+{
+    
+    
+    <label>Satış yapılacak müşteriyi seçiniz.</label>
+    @Html.DropDownListFor(m => m.TBL_MUSTERI.MUSTERIID, (List<SelectListItem>)ViewBag.mst, new { @class = "form-control" });
+
+
+    <label>Satış yapılacak ürünü seçiniz.</label>
+    @Html.DropDownListFor(m => m.TBL_URUN.URUNID, (List<SelectListItem>)ViewBag.urn, new { @class = "form-control" });
+
+
+    <br/>
+    
+
+    <button class="btn btn-success">Satış İşlemini Ekle/Kaydet</button>
+    
+}

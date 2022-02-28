@@ -1,0 +1,91 @@
+﻿@using MVCTeknolojikMarketYonetimPaneli.Models.Model
+
+@using PagedList
+
+@using PagedList.Mvc
+
+@model PagedList.IPagedList<TBL_MESAJPERYON>
+
+
+@{
+    ViewBag.Title = "GidenMesajlar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm("GidenMesajlar", "Mesaj", FormMethod.Get))
+{
+
+    <button type="submit" class="btn btn-link" name="btnmesajtarih" value="a-z">En Erken Mesaja göre Sırala</button>
+    <button type="submit" class="btn btn-link" name="btnmesajtarih" value="z-a">En Geç Mesaja göre Sırala</button>
+
+    <br /> <br />
+
+    <p>
+
+        Mesaj Başlığı @Html.TextBox("mesajbasligi")
+
+        <input type="submit" value="Ara" class="btn-info" />
+
+    </p>
+
+
+}
+
+<div class="table-responsive">
+
+    <table class="table table-hover">
+
+        <tr>
+
+            <th>PERSONEL</th>
+            <th>YONETICI</th>
+            <th>MESAJ BASLIGI</th>
+            <th>TARIH</th>
+            <th>İŞLEMLER</th>
+
+        </tr>
+
+
+        @foreach (var x in Model)
+        {
+
+            <tr>
+
+
+                <td>@x.TBL_PERSONEL.PERSONELAD @x.TBL_PERSONEL.PERSONELSOYAD</td>
+                <td>@x.TBL_YONETICI.YONETICIAD @x.TBL_YONETICI.YONETICISOYAD</td>
+                <td>@x.MESAJBASLIGI</td>
+                <td>@x.TARIH</td>
+
+                <td>
+                    <a href="/Mesaj/GidenMesajiGoruntule/@x.MESAJID" class="btn btn-info">Mesajı Görüntüle</a>
+                    <a href="/Mesaj/SohbetiGosterIki/@x.MESAJID" class="btn btn-primary">Sohbet Geçmişini Göster</a>
+                    <a href="/Mesaj/GidenMesajiSil/@x.MESAJID" class="btn btn-danger">Mesaj Sil</a>
+                </td>
+
+
+
+            </tr>
+
+
+        }
+
+
+
+
+
+
+    </table>
+
+</div>
+
+
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("GidenMesajlar", new { sayfa }))
+
+<a href="/Mesaj/YeniMesaj/" class="btn btn-success">Şube Yöneticisine mesaj yaz</a>
+
+<a href="/Mesaj/SilinmisGidenMesajlar/" class="btn btn-danger">Silinmiş Mesajlar</a>
+
+
+

@@ -1,0 +1,91 @@
+﻿@using MVCTeknolojikMarketYonetimPaneli.Models.Model
+
+@using PagedList
+@using PagedList.Mvc
+
+@model PagedList.IPagedList<TBL_MUSTERI>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Index", "Musteri", FormMethod.Get))
+{
+    
+     <p>
+
+         Müşteri Ad @Html.TextBox("ad")
+
+         Müşteri Soyad @Html.TextBox("soyad")
+         
+         <input type="submit" value="Ara" class="btn-info" />
+
+
+     </p>
+    
+    
+}
+
+<div class="table-responsive">
+
+    <table class="table table-hover">
+
+        <tr>
+
+            <th>MÜŞTERİ AD</th>
+            <th>MÜŞTERİ SOYAD</th>
+            <th>ŞUBE</th>
+            <th>TELEFON</th>
+            <th>MAIL</th>
+            <th>TC</th>
+            <th>CİNSİYET</th>
+            <th>YAŞ</th>
+            <th>İŞLEMLER</th>
+
+        </tr>
+
+
+        @foreach (var x in Model)
+        {
+
+            <tr>
+
+
+                <td>@x.MUSTERIAD</td>
+                <td>@x.MUSTERISOYAD</td>
+                <td>@x.TBL_SUBE.SUBEAD</td>
+                <td>@x.MUSTERITELEFON</td>
+                <td>@x.MUSTERIMAIL</td>
+                <td>@x.MUSTERITC</td>
+                <td>@x.MUSTERICINSIYET</td>
+                <td>@x.MUSTERIYAS</td>
+
+                <td>
+                    <a href="/Musteri/MusteriSil/@x.MUSTERIID" class="btn btn-danger">Sil</a>
+                    <a href="/Musteri/MusteriGetir/@x.MUSTERIID" class="btn btn-success">Güncelle</a>
+                </td>
+
+
+
+            </tr>
+
+
+        }
+
+
+
+
+
+
+    </table>
+
+</div>
+
+
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }))
+
+<a href="/Musteri/YeniMusteri/" class="btn btn-success">Müşteri Ekle</a>
+
+<a href="/Musteri/SilinmisMusteriler/" class="btn btn-danger">Silinmiş Müşteriler</a>
+  

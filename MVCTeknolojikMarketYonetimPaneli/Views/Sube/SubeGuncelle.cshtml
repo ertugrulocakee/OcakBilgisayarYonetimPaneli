@@ -1,0 +1,60 @@
+﻿@model MVCTeknolojikMarketYonetimPaneli.Models.Model.TBL_SUBE
+
+
+@{
+    ViewBag.Title = "SubeGuncelle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+
+        window.onload = function () {
+            alert('@ViewBag.Message');
+        };
+    </script>
+}
+
+
+@using (Html.BeginForm("SubeGuncelle", "Sube", FormMethod.Post))
+{
+
+    <label>Şube Adı</label>
+
+    @Html.TextBoxFor(m => m.SUBEAD, new { @class = "form-control" })
+
+    @Html.ValidationMessageFor(m => m.SUBEAD, "", new { @style = "color:red" })
+
+    <br />
+
+    <label>Şube Telefon</label>
+
+    @Html.TextBoxFor(m => m.SUBETELEFON, new { @class = "form-control" })
+
+    @Html.ValidationMessageFor(m => m.SUBETELEFON, "", new { @style = "color:red" })
+
+    <br />
+
+    <label>Şube Şehir</label>
+
+    @Html.DropDownListFor(m => m.SUBESEHIR, (List<SelectListItem>)ViewBag.shr, new { @class = "form-control" })
+
+    <br />
+
+    <label>Şube Kuruluş Tarihi</label>
+
+    @Html.TextBoxFor(m => m.SUBEKURULUSTARIHI, new { @class = "form-control" })
+
+    @Html.ValidationMessageFor(m => m.SUBEKURULUSTARIHI, "", new { @style = "color:red" })
+
+    <br />
+    
+    @Html.HiddenFor(m=>m.SUBEID)    
+
+    <button class="btn btn-success">Şubeyi Güncelle</button>
+
+
+}
+

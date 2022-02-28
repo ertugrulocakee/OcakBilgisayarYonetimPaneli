@@ -1,0 +1,43 @@
+﻿@model MVCTeknolojikMarketYonetimPaneli.Models.Model.TBL_BOLUM
+
+
+@{
+    ViewBag.Title = "BolumGuncelle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+
+        window.onload = function () {
+            alert('@ViewBag.Message');
+        };
+    </script>
+}
+
+
+@using (Html.BeginForm("BolumGuncelle", "Bolum", FormMethod.Post))
+{
+
+
+    <label>Güncellemek istediğiniz bölüm adını giriniz.</label>
+    @Html.TextBoxFor(m => m.BOLUMAD, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.BOLUMAD, "", new { @style = "color:red" })
+
+    <br />
+  
+
+    @Html.HiddenFor(m => m.BOLUMID)
+
+
+    <button class="btn btn-success">Bölümü Güncelle</button>
+
+
+}
+
+
+
+
+
+

@@ -1,0 +1,46 @@
+﻿@using MVCTeknolojikMarketYonetimPaneli.Models.Model
+
+@model TBL_YONETICI
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="panel-group">
+    <label>YÖNETİCİ BİLGİLERİ</label>
+    <br/>
+    <div class="panel panel-primary">
+        <div class="panel-heading">@Model.YONETICIAD @Model.YONETICISOYAD</div>
+        <div class="panel-body">@Model.TBL_SUBE.SUBEAD</div>
+        <div class="panel-footer">TC: @Model.YONETICITC</div>
+    </div>
+    <div class="panel panel-primary">
+        <div class="panel-heading">İLETİŞİM BİLGİLERİ</div>
+        <div class="panel-body">@Model.YONETICIMAIL</div>
+        <div class="panel-footer">@Model.YONETICITELEFON</div>
+    </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">MAAŞ-İŞ BİLGİSİ</div>
+        <div class="panel-body">Aylık Maaş: @Model.YONETICIMAAS TL</div>
+        <div class="panel-footer">İşe Başlama Tarihi: @Model.YONETICIBASLANGICTARIHI</div>
+    </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">DİĞER BİLGİLER</div>
+        <div class="panel-body">Yaş: @Model.YONETICIYAS Cinsiyet: @Model.YONETICICINSIYET</div>
+    </div>
+
+
+</div>
+
+<br />
+
+<a href="/ProfilYonetici/SifreGuncelle/@Model.YONETICIID" class="btn btn-success">Kullanıcı adı ve şifre güncelle</a>
+
+
+
+
+

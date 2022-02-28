@@ -1,0 +1,79 @@
+﻿@using MVCTeknolojikMarketYonetimPaneli.Models.Model;
+
+@using PagedList;
+@using PagedList.Mvc;
+
+@model PagedList.IPagedList<TBL_URUN>
+
+@{
+    ViewBag.Title = "SilinmisUrunler";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("SilinmisUrunler", "Urun", FormMethod.Get))
+{
+
+    <p>
+
+        Ürün Ad @Html.TextBox("ad")
+
+        <input type="submit" value="Ara" class="btn-info" />
+
+    </p>
+
+}
+
+<div class="table-responsive">
+
+    <table class="table table-hover">
+
+
+        <tr>
+
+            <th>URUN ADI</th>
+            <th>URUN KATEGORI</th>
+            <th>URUN SUBE</th>
+            <th>URUN STOK</th>
+            <th>ALIŞ FİYATI</th>
+            <th>SATIŞ FİYATI</th>
+            <th>İŞLEMLER</th>
+
+
+
+        </tr>
+
+
+        @foreach (var x in Model)
+        {
+
+            <tr>
+
+
+                <td>@x.URUNAD</td>
+                <td>@x.TBL_KATEGORI.KATEGORIAD</td>
+                <td>@x.TBL_SUBE.SUBEAD</td>
+                <td>@x.URUNSTOK</td>
+                <td>@x.URUNALISFIYAT</td>
+                <td>@x.URUNSATISFIYAT</td>
+                <td>
+                    <a href="/Urun/UrunuGeriGetir/@x.URUNID" class="btn btn-success">Ürünü Geri Getir</a>
+                    
+                </td>
+
+            </tr>
+
+
+
+        }
+
+
+
+
+    </table>
+</div>
+
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("SilinmisUrunler", new { sayfa }))
+
+
+
+

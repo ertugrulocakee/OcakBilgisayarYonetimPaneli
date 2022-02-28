@@ -1,0 +1,66 @@
+﻿@using MVCTeknolojikMarketYonetimPaneli.Models.Model
+
+@model List<SOHBET_Result>
+
+
+
+@{
+    ViewBag.Title = "SohbetiGosterIki";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@foreach (var x in Model)
+{
+
+    if (x.MESAJYON == true)
+    {
+
+        <div style="text-align:left">
+
+
+            <div class="panel panel-info">
+                <div class="panel-heading">@x.KISI</div>
+                <div class="panel-body">@x.MESAJICERIGI</div>
+                <div class="panel-footer">@x.TARIH</div>
+
+            </div>
+
+            <br />
+
+
+        </div>
+
+
+
+    }
+    else
+    {
+
+
+        <div style="text-align:right">
+
+
+            <div class="panel panel-success">
+                <div class="panel-heading">@x.KISI</div>
+                <div class="panel-body">@x.MESAJICERIGI</div>
+                <div class="panel-footer">@x.TARIH</div>
+
+            </div>
+
+            <br />
+
+
+        </div>
+
+
+    }
+
+
+
+
+
+}
+
+
+

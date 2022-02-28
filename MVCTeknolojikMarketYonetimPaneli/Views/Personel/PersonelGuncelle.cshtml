@@ -1,0 +1,87 @@
+﻿@model MVCTeknolojikMarketYonetimPaneli.Models.Model.TBL_PERSONEL
+
+@{
+    ViewBag.Title = "PersonelGuncelle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+
+        window.onload = function () {
+            alert('@ViewBag.Message');
+        };
+    </script>
+}
+
+@using (Html.BeginForm("PersonelGuncelle", "Personel", FormMethod.Post))
+{
+
+
+    <label>Güncellemek istediğiniz personelin adını giriniz.</label>
+    @Html.TextBoxFor(m => m.PERSONELAD, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.PERSONELAD, "", new { @style = "color:red" })
+
+    <br />
+    <label>Güncellemek istediğiniz personelin soyadını giriniz.</label>
+    @Html.TextBoxFor(m => m.PERSONELSOYAD, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.PERSONELSOYAD, "", new { @style = "color:red" })
+
+    <br />
+    <label>Güncellemek istediğiniz personelin bölümünü seçiniz.</label>
+    @Html.DropDownListFor(m => m.TBL_BOLUM.BOLUMID, (List<SelectListItem>)ViewBag.blm, new { @class = "form-control" })
+
+    <br />
+    <label>Güncellemek istediğiniz personelin telefonunu giriniz.</label>
+    @Html.TextBoxFor(m => m.PERSONELTELEFON, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.PERSONELTELEFON, "", new { @style = "color:red" })
+
+    <br />
+    <label>Güncellemek istediğiniz personelin e-posta adresini giriniz.</label>
+    @Html.TextBoxFor(m => m.PERSONELMAIL, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.PERSONELMAIL, "", new { @style = "color:red" })
+
+    <br />
+    <label>Güncellemek istediğiniz personelin TC kimlik numarasını giriniz.</label>
+    @Html.TextBoxFor(m => m.PERSONELTC, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.PERSONELTC, "", new { @style = "color:red" })
+
+    <br />
+    <label>Güncellemek istediğiniz personelin cinsiyetini seçiniz.</label>
+    @Html.DropDownListFor(m => m.PERSONELCINSIYET, (List<SelectListItem>)ViewBag.cns, new { @class = "form-control" })
+    <br />
+    <label>Güncellemek istediğiniz personelin yaşını giriniz.</label>
+    @Html.TextBoxFor(m => m.PERSONELYAS, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.PERSONELYAS, "", new { @style = "color:red" })
+
+    <br />
+
+    <label>Güncellemek istediğiniz personelin maaşını giriniz.</label>
+    @Html.TextBoxFor(m => m.PERSONELMAAS, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.PERSONELMAAS, "", new { @style = "color:red" })
+
+    <br />
+
+
+    <label>Güncellemek istediğiniz personelin kullanıcı adını giriniz.</label>
+    @Html.TextBoxFor(m => m.KULLANICIADI, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.KULLANICIADI, "", new { @style = "color:red" })
+
+    <br />
+
+    <label>Güncellemek istediğiniz personelin şifresini giriniz.</label>
+    @Html.TextBoxFor(m => m.SIFRE, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.SIFRE, "", new { @style = "color:red" })
+
+    <br />
+
+    @Html.HiddenFor(m=>m.PERSONELID)
+    
+    
+    <button class="btn btn-success">Personeli Güncelle</button>
+
+
+
+
+}    

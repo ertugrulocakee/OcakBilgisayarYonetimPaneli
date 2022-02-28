@@ -1,0 +1,101 @@
+﻿@using MVCTeknolojikMarketYonetimPaneli.Models.Model
+
+@using PagedList
+@using PagedList.Mvc
+
+@model PagedList.IPagedList<TBL_YONETICI>
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Index", "Yonetici", FormMethod.Get))
+{
+
+    <p>
+
+        Yönetici Ad @Html.TextBox("ad")
+
+        Yönetici Soyad @Html.TextBox("soyad")
+
+        <input type="submit" value="Ara" class="btn-info" />
+
+
+    </p>
+
+
+}
+
+<div class="table-responsive">
+
+    <table class="table table-hover">
+
+        <tr>
+
+            <th>YÖNETİCİ AD</th>
+            <th>YÖNETİCİ SOYAD</th>
+            <th>ŞUBE</th>
+            <th>TELEFON</th>
+            <th>MAIL</th>
+            <th>TC</th>
+            <th>MAAŞ</th>
+            <th>CİNSİYET</th>
+            <th>YAŞ</th>
+            <th>BAŞLANGIÇ TARİHİ</th>
+            <th>İŞLEMLER</th>
+
+
+        </tr>
+
+
+        @foreach (var x in Model)
+        {
+
+            <tr>
+
+
+                <td>@x.YONETICIAD</td>
+                <td>@x.YONETICISOYAD</td>
+                <td>@x.TBL_SUBE.SUBEAD</td>
+                <td>@x.YONETICITELEFON</td>
+                <td>@x.YONETICIMAIL</td>
+                <td>@x.YONETICITC</td>
+                <td>@x.YONETICIMAAS TL</td>
+                <td>@x.YONETICICINSIYET</td>
+                <td>@x.YONETICIYAS</td>
+                <td>@x.YONETICIBASLANGICTARIHI</td>
+
+                <td>
+                    <a href="/Yonetici/YoneticiSil/@x.YONETICIID" class="btn btn-danger">Sil</a>
+                    <a href="/Yonetici/YoneticiGuncelle/@x.YONETICIID" class="btn btn-success">Güncelle</a>
+                </td>
+
+
+
+            </tr>
+
+
+        }
+
+
+
+
+
+
+    </table>
+
+</div>
+
+
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }))
+
+<a href="/Yonetici/YoneticiEkle/" class="btn btn-success">Yönetici Ekle</a>
+
+<a href="/Yonetici/SilinmisYoneticiler/" class="btn btn-danger">Silinmiş Yöneticiler</a>
+
+
+
+
+

@@ -1,0 +1,46 @@
+﻿@using MVCTeknolojikMarketYonetimPaneli.Models.Model
+
+@model TBL_PERSONEL
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="panel-group">
+    <label>PERSONEL BİLGİLERİ</label>
+    <br/>
+    <div class="panel panel-primary">
+        <div class="panel-heading">@Model.PERSONELAD @Model.PERSONELSOYAD</div>
+        <div class="panel-body">@Model.TBL_SUBE.SUBEAD / @Model.TBL_BOLUM.BOLUMAD</div>
+        <div class="panel-footer">TC: @Model.PERSONELTC</div>               
+    </div>
+    <div class="panel panel-primary">
+        <div class="panel-heading">İLETİŞİM BİLGİLERİ</div>
+        <div class="panel-body">@Model.PERSONELMAIL</div>
+        <div class="panel-footer">@Model.PERSONELTELEFON</div>                           
+    </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">MAAŞ-İŞ BİLGİSİ</div>
+        <div class="panel-body">Aylık Maaş: @Model.PERSONELMAAS TL</div>
+        <div class="panel-footer">İşe Başlama Tarihi: @Model.PERSONELBASLANGICTARIHI</div>       
+    </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">DİĞER BİLGİLER</div>
+        <div class="panel-body">Yaş: @Model.PERSONELYAS Cinsiyet: @Model.PERSONELCINSIYET</div>
+    </div>
+
+
+
+
+</div>
+
+<br/>
+
+<a href="/Profil/SifreGuncelle/@Model.PERSONELID" class="btn btn-success">Kullanıcı adı ve şifre güncelle</a>
+
+
+

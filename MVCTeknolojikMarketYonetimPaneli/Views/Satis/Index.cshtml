@@ -1,0 +1,97 @@
+﻿@using MVCTeknolojikMarketYonetimPaneli.Models.Model;
+
+@using PagedList.Mvc;
+@using PagedList;
+
+@model PagedList.IPagedList<TBL_SATIS>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Index", "Satis", FormMethod.Get))
+{
+   
+    <button type="submit" class="btn btn-link" name="btnSatisTarihi" value="a-z">En Erken Satışa göre Sırala</button>
+    <button type="submit" class="btn btn-link" name="btnSatisTarihi" value="z-a">En Geç Satışa göre Sırala</button>
+
+    <br /> <br/>
+    
+    <p>
+
+        Personel @Html.TextBox("personeladsoyad")
+
+        Müşteri @Html.TextBox("musteriadsoyad")
+
+        Ürün @Html.TextBox("urunad")
+
+
+        <input type="submit" value="Ara" class="btn-info" />
+
+
+    </p>
+
+
+}
+
+
+<div class="table-responsive">
+
+    <table class="table table-hover">
+
+
+        <tr>
+
+            <th>SATIS ISLEMINI YAPAN PERSONEL</th>
+            <th>MUSTERI</th>
+            <th>SATILAN URUN</th>
+            <th>URUN SATIS FIYATI</th>
+            <th>SATIS TARIHI</th>        
+            <th>İŞLEMLER</th>
+
+
+
+        </tr>
+
+
+        @foreach (var x in Model)
+        {
+
+            <tr>
+
+
+                <td>@x.TBL_PERSONEL.PERSONELAD @x.TBL_PERSONEL.PERSONELSOYAD</td>
+                <td>@x.TBL_MUSTERI.MUSTERIAD @x.TBL_MUSTERI.MUSTERISOYAD</td>
+                <td>@x.TBL_URUN.URUNAD</td>
+                <td>@x.SATISFIYATI</td>
+                <td>@x.SATISTARIHI</td>
+             
+                <td>
+                    <a href="/Satis/SatisSil/@x.SATISID" class="btn btn-danger">Satışı Sil</a>
+                    <a href="/Satis/SatisGetir/@x.SATISID" class="btn btn-success">Satışı Güncelle</a>
+                </td>
+
+            </tr>
+
+
+
+        }
+
+
+
+
+    </table>
+</div>
+
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }))
+
+<br />
+
+
+<a href="/Satis/YeniSatis/" class="btn btn-success">Yeni Satış İşlemi Ekle</a>
+
+<a href="/Satis/SilinmisSatislar/" class="btn btn-danger">Silinmiş Satışlar</a>
+
+
+

@@ -1,0 +1,88 @@
+﻿@model MVCTeknolojikMarketYonetimPaneli.Models.Model.TBL_YONETICI
+
+@{
+    ViewBag.Title = "YoneticiGuncelle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+
+        window.onload = function () {
+            alert('@ViewBag.Message');
+        };
+    </script>
+}
+
+@using (Html.BeginForm("YoneticiGuncelle", "Yonetici", FormMethod.Post))
+{
+
+
+    <label>Güncellemek istediğiniz yöneticinin adını giriniz.</label>
+    @Html.TextBoxFor(m => m.YONETICIAD, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.YONETICIAD, "", new { @style = "color:red" })
+
+    <br />
+    <label>Güncellemek istediğiniz yöneticinin soyadını giriniz.</label>
+    @Html.TextBoxFor(m => m.YONETICISOYAD, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.YONETICISOYAD, "", new { @style = "color:red" })
+
+    <br />
+    <label>Güncellemek istediğiniz yöneticinin şubesini seçiniz.</label>
+    @Html.DropDownListFor(m => m.TBL_SUBE.SUBEID, (List<SelectListItem>)ViewBag.sb, new { @class = "form-control" })
+
+    <br />
+    <label>Güncellemek istediğiniz yöneticinin telefonunu giriniz.</label>
+    @Html.TextBoxFor(m => m.YONETICITELEFON, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.YONETICITELEFON, "", new { @style = "color:red" })
+
+    <br />
+    <label>Güncellemek istediğiniz yöneticinin e-posta adresini giriniz.</label>
+    @Html.TextBoxFor(m => m.YONETICIMAIL, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.YONETICIMAIL, "", new { @style = "color:red" })
+
+    <br />
+    <label>Güncellemek istediğiniz yöneticinin TC kimlik numarasını giriniz.</label>
+    @Html.TextBoxFor(m => m.YONETICITC, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.YONETICITC, "", new { @style = "color:red" })
+
+    <br />
+    <label>Güncellemek istediğiniz yöneticinin cinsiyetini seçiniz.</label>
+    @Html.DropDownListFor(m => m.YONETICICINSIYET, (List<SelectListItem>)ViewBag.cns, new { @class = "form-control" })
+    <br />
+    <label>Güncellemek istediğiniz yöneticinin yaşını giriniz.</label>
+    @Html.TextBoxFor(m => m.YONETICIYAS, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.YONETICIYAS, "", new { @style = "color:red" })
+
+    <br />
+
+    <label>Güncellemek istediğiniz yöneticinin maaşını giriniz.</label>
+    @Html.TextBoxFor(m => m.YONETICIMAAS, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.YONETICIMAAS, "", new { @style = "color:red" })
+
+    <br />
+
+
+    <label>Güncellemek istediğiniz yöneticinin kullanıcı adını giriniz.</label>
+    @Html.TextBoxFor(m => m.KULLANICIADI, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.KULLANICIADI, "", new { @style = "color:red" })
+
+    <br />
+
+    <label>Güncellemek istediğiniz yöneticinin şifresini giriniz.</label>
+    @Html.TextBoxFor(m => m.SIFRE, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.SIFRE, "", new { @style = "color:red" })
+
+    <br />
+
+    @Html.HiddenFor(m => m.YONETICIID)
+
+
+    <button class="btn btn-success">Yöneticiyi Güncelle</button>
+
+
+
+
+}    
+

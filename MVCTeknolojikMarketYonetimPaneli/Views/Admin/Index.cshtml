@@ -1,0 +1,66 @@
+﻿@using MVCTeknolojikMarketYonetimPaneli.Models.Model
+
+@using PagedList
+@using PagedList.Mvc
+
+@model PagedList.IPagedList<TBL_ADMIN>
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Index", "Admin", FormMethod.Get))
+{
+
+    <p>
+
+        Kullanıcı Adı @Html.TextBox("kullanici")
+
+       
+        <input type="submit" value="Ara" class="btn-info" />
+
+
+    </p>
+
+
+}
+
+<div class="table-responsive">
+
+    <table class="table table-hover">
+
+        <tr>
+
+            <th>KULLANICI ADI</th>
+            <th>KULLANICI TÜRÜ</th>
+           
+
+        </tr>
+
+
+        @foreach (var x in Model)
+        {
+
+            <tr>
+
+
+                <td>@x.KULLANICIADI</td>
+                <td>@x.KULLANICITIPI</td>
+              
+
+            </tr>
+
+
+        }
+
+
+    </table>
+
+</div>
+
+
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }))
+
+<a href="/Admin/AdminEkle/" class="btn btn-success">Admin Ekle</a>

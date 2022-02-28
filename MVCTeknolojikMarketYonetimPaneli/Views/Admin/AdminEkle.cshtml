@@ -1,0 +1,47 @@
+﻿@model MVCTeknolojikMarketYonetimPaneli.Models.Model.TBL_ADMIN
+
+@{
+    ViewBag.Title = "AdminEkle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+
+        window.onload = function () {
+            alert('@ViewBag.Message');
+        };
+    </script>
+}
+
+
+@using (Html.BeginForm("AdminEkle", "Admin", FormMethod.Post))
+{
+
+    <label>Kullanıcı adı</label>
+
+    @Html.TextBoxFor(x => x.KULLANICIADI, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.KULLANICIADI, "", new { @style = "color:red" })
+
+    <br />
+    <br />
+
+    <label>Şifre</label>
+
+    @Html.TextBoxFor(x => x.SIFRE, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.SIFRE, "", new { @style = "color:red" })
+
+    
+    <br />
+
+    <br />
+
+    <button class="btn btn-success">Ekle/Kaydet</button>
+
+
+
+}
+
+
+

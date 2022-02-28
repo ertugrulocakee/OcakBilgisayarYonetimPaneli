@@ -1,0 +1,68 @@
+﻿@model MVCTeknolojikMarketYonetimPaneli.Models.Model.TBL_MUSTERI
+
+@{
+    ViewBag.Title = "YeniMusteri";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+
+        window.onload = function () {
+            alert('@ViewBag.Message');
+        };
+    </script>
+}  
+
+
+<form class="form-group" method="post">
+
+
+    <label>Eklemek istediğiniz müşterinin adını giriniz.</label>
+    @Html.TextBoxFor(m => m.MUSTERIAD, new { @class="form-control"})
+    @Html.ValidationMessageFor(m => m.MUSTERIAD, "", new {@style ="color:red"})
+ 
+    <br/>
+    <label>Eklemek istediğiniz müşterinin soyadını giriniz.</label>
+    @Html.TextBoxFor(m => m.MUSTERISOYAD, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.MUSTERISOYAD, "", new { @style = "color:red" })
+  
+    <br />
+    <label>Eklemek istediğiniz müşterinin şubesini seçiniz.</label>
+    @Html.DropDownListFor(m => m.TBL_SUBE.SUBEID, (List<SelectListItem>) ViewBag.sb, new { @class = "form-control" }) 
+
+    <br />
+    <label>Eklemek istediğiniz müşterinin telefonunu giriniz.</label>
+    @Html.TextBoxFor(m => m.MUSTERITELEFON, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.MUSTERITELEFON, "", new { @style = "color:red" })
+ 
+    <br />
+    <label>Eklemek istediğiniz müşterinin e-posta adresini giriniz.</label>
+    @Html.TextBoxFor(m => m.MUSTERIMAIL, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.MUSTERIMAIL, "", new { @style = "color:red" })
+      
+    <br />
+    <label>Eklemek istediğiniz müşterinin TC kimlik numarasını giriniz.</label>
+    @Html.TextBoxFor(m => m.MUSTERITC, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.MUSTERITC, "", new { @style = "color:red" })
+      
+    <br /> 
+    <label>Eklemek istediğiniz müşterinin cinsiyetini seçiniz.</label>
+    @Html.DropDownListFor(m=>m.MUSTERICINSIYET,(List<SelectListItem>) ViewBag.cns, new {@class="form-control"})
+    <br />
+    <label>Eklemek istediğiniz müşterinin yaşını giriniz.</label>
+     @Html.TextBoxFor(m => m.MUSTERIYAS,new {@class="form-control"})
+    @Html.ValidationMessageFor(m => m.MUSTERIYAS, "", new { @style = "color:red" })
+ 
+    <br />
+
+
+    <button class="btn btn-success">Müşteriyi Kaydet/Ekle</button>
+
+ 
+   
+
+
+</form>
+

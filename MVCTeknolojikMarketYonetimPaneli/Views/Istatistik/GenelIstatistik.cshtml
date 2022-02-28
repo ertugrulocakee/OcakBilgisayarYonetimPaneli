@@ -1,0 +1,46 @@
+﻿@model MVCTeknolojikMarketYonetimPaneli.Models.EkModel.Istatistik
+
+
+@{
+    ViewBag.Title = "GenelIstatistik";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel-group">
+    <label>FİRMANIN ENLERİ</label>
+
+    <br />
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">En başarılı şube (satış sayısı bazında)</div>
+        <div class="panel-body">@Model.Sube</div>
+
+    </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">En çok satılan kategori</div>
+        <div class="panel-body">@Model.Kategori</div>
+
+    </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">En çok satılan ürün</div>
+        <div class="panel-body">@Model.Urun</div>
+
+    </div>
+    <div class="panel panel-primary">
+        <div class="panel-heading">En çok satış yapan personel</div>
+        <div class="panel-body">@Model.Personel</div>
+
+    </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">En çok satın alma işlemi gerçekleştiren müşteri</div>
+        <div class="panel-body">@Model.Musteri</div>
+
+    </div>
+
+
+
+</div>
+
