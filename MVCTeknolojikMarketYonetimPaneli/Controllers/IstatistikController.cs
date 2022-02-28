@@ -25,9 +25,8 @@ namespace MVCTeknolojikMarketYonetimPaneli.Controllers
             try
             {
 
-                 urunAd = db.TBL_SATIS.Where(m => m.TBL_SUBE.SUBEID == subeID).GroupBy(m => m.TBL_URUN.URUNAD).OrderByDescending((x) => x.Count()).FirstOrDefault().Key.ToString();
-
-               
+                 urunAd = db.TBL_SATIS.Where(m => m.TBL_SUBE.SUBEID == subeID && m.SATISDURUM == true).GroupBy(m => m.TBL_URUN.URUNAD).OrderByDescending((x) => x.Count()).FirstOrDefault().Key.ToString();
+              
             }
             catch (Exception e)
             {
@@ -42,7 +41,7 @@ namespace MVCTeknolojikMarketYonetimPaneli.Controllers
             try
             {
 
-                personelAdSoyad = db.TBL_SATIS.Where(m => m.TBL_SUBE.SUBEID == subeID).GroupBy(m => (m.TBL_PERSONEL.PERSONELAD + " " + m.TBL_PERSONEL.PERSONELSOYAD)).OrderByDescending((x) => x.Count()).FirstOrDefault().Key.ToString();
+                personelAdSoyad = db.TBL_SATIS.Where(m => m.TBL_SUBE.SUBEID == subeID && m.SATISDURUM == true).GroupBy(m => (m.TBL_PERSONEL.PERSONELAD + " " + m.TBL_PERSONEL.PERSONELSOYAD)).OrderByDescending((x) => x.Count()).FirstOrDefault().Key.ToString();
 
 
             }
@@ -58,7 +57,7 @@ namespace MVCTeknolojikMarketYonetimPaneli.Controllers
             try
             {
 
-                musteriAdSoyad = db.TBL_SATIS.Where(m => m.TBL_SUBE.SUBEID == subeID).GroupBy(m => (m.TBL_MUSTERI.MUSTERIAD + " " + m.TBL_MUSTERI.MUSTERISOYAD)).OrderByDescending((x) => x.Count()).FirstOrDefault().Key.ToString();
+                musteriAdSoyad = db.TBL_SATIS.Where(m => m.TBL_SUBE.SUBEID == subeID && m.SATISDURUM == true).GroupBy(m => (m.TBL_MUSTERI.MUSTERIAD + " " + m.TBL_MUSTERI.MUSTERISOYAD)).OrderByDescending((x) => x.Count()).FirstOrDefault().Key.ToString();
 
             }
             catch (Exception e)
@@ -73,7 +72,7 @@ namespace MVCTeknolojikMarketYonetimPaneli.Controllers
             try
             {
 
-                kategoriAdi = db.TBL_SATIS.Where(m => m.TBL_SUBE.SUBEID == subeID).GroupBy(m => m.TBL_URUN.TBL_KATEGORI.KATEGORIAD).OrderByDescending((x) => x.Count()).FirstOrDefault().Key.ToString();
+                kategoriAdi = db.TBL_SATIS.Where(m => m.TBL_SUBE.SUBEID == subeID && m.SATISDURUM == true).GroupBy(m => m.TBL_URUN.TBL_KATEGORI.KATEGORIAD).OrderByDescending((x) => x.Count()).FirstOrDefault().Key.ToString();
 
             }
             catch (Exception e)
@@ -110,7 +109,7 @@ namespace MVCTeknolojikMarketYonetimPaneli.Controllers
             try
             {
 
-                urunAd = db.TBL_SATIS.GroupBy(m => m.TBL_URUN.URUNAD).OrderByDescending((x) => x.Count()).FirstOrDefault().Key.ToString();
+                urunAd = db.TBL_SATIS.Where(m => m.SATISDURUM == true).GroupBy(m => m.TBL_URUN.URUNAD).OrderByDescending((x) => x.Count()).FirstOrDefault().Key.ToString();
 
 
             }
@@ -127,7 +126,7 @@ namespace MVCTeknolojikMarketYonetimPaneli.Controllers
             try
             {
 
-                personelAdSoyad = db.TBL_SATIS.GroupBy(m => (m.TBL_PERSONEL.PERSONELAD + " " + m.TBL_PERSONEL.PERSONELSOYAD)).OrderByDescending((x) => x.Count()).FirstOrDefault().Key.ToString();
+                personelAdSoyad = db.TBL_SATIS.Where(m => m.SATISDURUM == true).GroupBy(m => (m.TBL_PERSONEL.PERSONELAD + " " + m.TBL_PERSONEL.PERSONELSOYAD)).OrderByDescending((x) => x.Count()).FirstOrDefault().Key.ToString();
 
 
             }
@@ -143,7 +142,7 @@ namespace MVCTeknolojikMarketYonetimPaneli.Controllers
             try
             {
 
-                musteriAdSoyad = db.TBL_SATIS.GroupBy(m => (m.TBL_MUSTERI.MUSTERIAD + " " + m.TBL_MUSTERI.MUSTERISOYAD)).OrderByDescending((x) => x.Count()).FirstOrDefault().Key.ToString();
+                musteriAdSoyad = db.TBL_SATIS.Where(m => m.SATISDURUM == true).GroupBy(m => (m.TBL_MUSTERI.MUSTERIAD + " " + m.TBL_MUSTERI.MUSTERISOYAD)).OrderByDescending((x) => x.Count()).FirstOrDefault().Key.ToString();
 
             }
             catch (Exception e)
@@ -159,7 +158,7 @@ namespace MVCTeknolojikMarketYonetimPaneli.Controllers
             try
             {
 
-                kategoriAdi = db.TBL_SATIS.GroupBy(m => m.TBL_URUN.TBL_KATEGORI.KATEGORIAD).OrderByDescending((x) => x.Count()).FirstOrDefault().Key.ToString();
+                kategoriAdi = db.TBL_SATIS.Where(m => m.SATISDURUM == true).GroupBy(m => m.TBL_URUN.TBL_KATEGORI.KATEGORIAD).OrderByDescending((x) => x.Count()).FirstOrDefault().Key.ToString();
 
             }
             catch (Exception e)
@@ -174,7 +173,7 @@ namespace MVCTeknolojikMarketYonetimPaneli.Controllers
             try
             {
 
-                subeAdi = db.TBL_SATIS.GroupBy(m => m.TBL_SUBE.SUBEAD).OrderByDescending((x) => x.Count()).FirstOrDefault().Key.ToString();
+                subeAdi = db.TBL_SATIS.Where(m => m.SATISDURUM == true).GroupBy(m => m.TBL_SUBE.SUBEAD).OrderByDescending((x) => x.Count()).FirstOrDefault().Key.ToString();
 
             }
             catch (Exception e)
