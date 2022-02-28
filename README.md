@@ -16,6 +16,13 @@ Adminin amacı admin, şube, yönetici ve bölüm işlemlerini gerçek kılmakt�
 Ayrıca Admin Firmasının Gelir-Gider bilgilerini ve istatistiklerini görüntüleyebilir.
 
 
+Kullanılan Teknolojiler
+
+=> ASPNET MVC 5.0 (Tasarım Deseni) 
+=> ENTITY FRAMEWORK DBFIRST && LINQ (Model İşlemleri)
+=> MSSQL VERİ TABANI
+=> Bootstrap 3 ve HTML5 && CSS3 && JS (Ön Yüz İşlemleri)
+=> C# Programlama Dili (Arka Plan İşlemleri)
 
 
 
