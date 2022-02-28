@@ -194,7 +194,7 @@ namespace MVCTeknolojikMarketYonetimPaneli.Controllers
             if (!personel.TBL_BOLUM.BOLUMAD.Equals("Satış"))
             {
 
-                ViewBag.Message = "Satış Islemini sadece satış personeli yapabilir!";
+                ViewBag.Message = "Satış Islemini sadece satış personeli guncelleyebilir!";
 
                 musterilerVeUrunler();
 
@@ -258,6 +258,19 @@ namespace MVCTeknolojikMarketYonetimPaneli.Controllers
 
         public ActionResult SatisSil(int id)
         {
+
+            string kullaniciAdi = Session["KullaniciAdi"].ToString();
+
+            var personel = db.TBL_PERSONEL.Where(m => m.KULLANICIADI == kullaniciAdi).FirstOrDefault();
+
+            if (!personel.TBL_BOLUM.BOLUMAD.Equals("Satış"))
+            {
+
+            
+                return RedirectToAction("Index","Satis");
+
+            }
+
 
             var satis = db.TBL_SATIS.Find(id);
 
@@ -335,6 +348,20 @@ namespace MVCTeknolojikMarketYonetimPaneli.Controllers
 
         public ActionResult SatisiGeriGetir(int id)
         {
+
+
+            string kullaniciAdi = Session["KullaniciAdi"].ToString();
+
+            var personel = db.TBL_PERSONEL.Where(m => m.KULLANICIADI == kullaniciAdi).FirstOrDefault();
+
+            if (!personel.TBL_BOLUM.BOLUMAD.Equals("Satış"))
+            {
+
+
+                return RedirectToAction("SilinmisSatislar", "Satis");
+
+            }
+
 
             var satis = db.TBL_SATIS.Find(id);
 
