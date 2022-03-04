@@ -206,6 +206,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\EkModel\Class1.cs" />
     <Compile Include="Models\EkModel\Istatistik.cs" />
     <Compile Include="Models\EkModel\KarZarar.cs" />
     <Compile Include="Models\EkModel\Mail.cs" />

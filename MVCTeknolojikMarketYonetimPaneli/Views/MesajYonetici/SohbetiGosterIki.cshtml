@@ -1,15 +1,26 @@
 ﻿@using MVCTeknolojikMarketYonetimPaneli.Models.Model
+@using MVCTeknolojikMarketYonetimPaneli.Models.EkModel
 
-@model List<SOHBET_Result>
+@model Tuple<List<SOHBET_Result>, TBL_MESAJYONPER, Class1>
+
 
 @{
     ViewBag.Title = "SohbetiGosterIki";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+
+        window.onload = function () {
+            alert('@ViewBag.Message');
+        };
+    </script>
+}
 
 
-@foreach (var x in Model)
+@foreach (var x in Model.Item1)
 {
 
     if (x.MESAJYON == true)
@@ -62,4 +73,21 @@
 }
 
 
+@using (Html.BeginForm("SohbetiGosterIki", "MesajYonetici", FormMethod.Post))
+{
 
+
+    @Html.TextAreaFor(m => m.Item2.MESAJICERIGI, new { rows = "5", @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.Item2.MESAJICERIGI, "", new { @style = "color:red" })
+
+    @Html.HiddenFor(m => m.Item2.MESAJBASLIGI, new { Value = @Model.Item3.MesajBaslik })
+    @Html.ValidationMessageFor(m => m.Item2.MESAJBASLIGI, "", new { @style = "color:red" })
+
+    @Html.HiddenFor(m => m.Item3.MesajId)
+
+    @Html.HiddenFor(m => m.Item3.Personel)
+
+    <br />
+    <button class="btn btn-success">Gönder</button>
+
+}

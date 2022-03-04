@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using PagedList;
 using PagedList.Mvc;
 using MVCTeknolojikMarketYonetimPaneli.Models.Model;
+using MVCTeknolojikMarketYonetimPaneli.Models.EkModel;
 
 namespace MVCTeknolojikMarketYonetimPaneli.Controllers
 {
@@ -166,8 +167,7 @@ namespace MVCTeknolojikMarketYonetimPaneli.Controllers
 
         }
 
-
-              
+             
         [HttpPost]
         public ActionResult MesajGoruntule([Bind(Prefix = "Item1")]TBL_MESAJYONPER Model1,[Bind(Prefix = "Item2")]TBL_MESAJPERYON Model2)
         {
@@ -225,9 +225,18 @@ namespace MVCTeknolojikMarketYonetimPaneli.Controllers
             }
 
 
-        [Authorize(Roles="Personel")]        
+        [Authorize(Roles="Personel")]
+        [HttpGet]
         public ActionResult SohbetiGoster(int id)
         {
+
+
+            if (TempData["ileti"] != null)
+            {
+
+                ViewBag.Message = TempData["ileti"].ToString();
+
+            }
 
            
             var mesaj = db.TBL_MESAJYONPER.Find(id);
@@ -237,8 +246,70 @@ namespace MVCTeknolojikMarketYonetimPaneli.Controllers
             
             var mesajlar = db.SOHBET(baslik).ToList();
 
-           return View(mesajlar);
-      
+            Class1 mesajIdBaslik = new Class1();
+
+            mesajIdBaslik.MesajId = id;
+
+            mesajIdBaslik.MesajBaslik = baslik;
+            
+            return View(Tuple.Create<List<SOHBET_Result>, TBL_MESAJPERYON, Class1>(mesajlar, new TBL_MESAJPERYON(),mesajIdBaslik));
+
+        }
+
+
+        [HttpPost]
+        public ActionResult SohbetiGoster([Bind(Prefix = "Item1")]List<SOHBET_Result> Model1, [Bind(Prefix = "Item2")]TBL_MESAJPERYON Model2, [Bind(Prefix="Item3")]Class1 Model3)
+        {
+
+            string kullaniciAdi = Session["KullaniciAdi"].ToString();
+
+            int subeId = Convert.ToInt32(Session["PersonelSube"].ToString());
+
+            var personel = db.TBL_PERSONEL.Where(m => m.KULLANICIADI == kullaniciAdi).FirstOrDefault();
+
+            var yonetici = db.TBL_YONETICI.Where(m => m.TBL_SUBE.SUBEID == subeId && m.YONETICIDURUM == true).FirstOrDefault();
+
+            if (String.IsNullOrEmpty(Model2.MESAJICERIGI))
+            {
+
+                TempData["ileti"] = "Yanıt yoneticiye iletilemedi! Yanitiniz bos olamaz ve 250 karakteri gecemez!";
+
+                return RedirectToAction("SohbetiGoster/" + Model3.MesajId, "Mesaj");
+
+
+            }
+
+            if (ModelState.IsValid)
+            {
+
+                Model2.TBL_PERSONEL = personel;
+
+                Model2.TBL_YONETICI = yonetici;
+
+                Model2.TARIH = DateTime.Now;
+
+                Model2.DURUM = true;
+
+                Model2.MESAJYON = false;
+
+                db.TBL_MESAJPERYON.Add(Model2);
+
+                db.SaveChanges();
+
+
+                return RedirectToAction("SohbetiGoster/"+Model3.MesajId,"Mesaj");
+
+
+            }
+            else
+            {
+
+                TempData["ileti"] = "Yanıt yoneticiye iletilemedi! Yanitiniz bos olamaz ve 250 karakteri gecemez!";
+
+                return RedirectToAction("SohbetiGoster/"+ Model3.MesajId,"Mesaj");
+
+            }
+
 
         }
 
@@ -410,21 +481,87 @@ namespace MVCTeknolojikMarketYonetimPaneli.Controllers
 
 
         [Authorize(Roles="Personel")]
+        [HttpGet]
         public ActionResult SohbetiGosterIki(int id)
         {
+
+            if (TempData["ileti"] != null)
+            {
+
+                ViewBag.Message = TempData["ileti"].ToString();
+
+            }
 
             var mesaj = db.TBL_MESAJPERYON.Find(id);
 
             string baslik = mesaj.MESAJBASLIGI.ToString();
 
-
             var mesajlar = db.SOHBET(baslik).ToList();
 
-            return View(mesajlar);
+            Class1 mesajIdBaslik = new Class1();
 
+            mesajIdBaslik.MesajId = id;
+
+            mesajIdBaslik.MesajBaslik = baslik;
+
+            return View(Tuple.Create<List<SOHBET_Result>, TBL_MESAJPERYON, Class1>(mesajlar, new TBL_MESAJPERYON(), mesajIdBaslik));
 
         }
 
+        [HttpPost]
+        public ActionResult SohbetiGosterIki([Bind(Prefix = "Item1")]List<SOHBET_Result> Model1, [Bind(Prefix = "Item2")]TBL_MESAJPERYON Model2, [Bind(Prefix = "Item3")]Class1 Model3)
+        {
+
+            string kullaniciAdi = Session["KullaniciAdi"].ToString();
+
+            int subeId = Convert.ToInt32(Session["PersonelSube"].ToString());
+
+            var personel = db.TBL_PERSONEL.Where(m => m.KULLANICIADI == kullaniciAdi).FirstOrDefault();
+
+            var yonetici = db.TBL_YONETICI.Where(m => m.TBL_SUBE.SUBEID == subeId && m.YONETICIDURUM == true).FirstOrDefault();
+
+            if (String.IsNullOrEmpty(Model2.MESAJICERIGI))
+            {
+
+                TempData["ileti"] = "Yanıt yoneticiye iletilemedi! Yanitiniz bos olamaz ve 250 karakteri gecemez!";
+
+                return RedirectToAction("SohbetiGosterIki/" + Model3.MesajId, "Mesaj");
+
+
+            }
+
+            if (ModelState.IsValid)
+            {
+
+                Model2.TBL_PERSONEL = personel;
+
+                Model2.TBL_YONETICI = yonetici;
+
+                Model2.TARIH = DateTime.Now;
+
+                Model2.DURUM = true;
+
+                Model2.MESAJYON = false;
+
+                db.TBL_MESAJPERYON.Add(Model2);
+
+                db.SaveChanges();
+
+
+                return RedirectToAction("SohbetiGosterIki/" + Model3.MesajId, "Mesaj");
+
+
+            }
+            else
+            {
+
+                TempData["ileti"] = "Yanıt yoneticiye iletilemedi! Yanitiniz bos olamaz ve 250 karakteri gecemez!";
+
+                return RedirectToAction("SohbetiGosterIki/" + Model3.MesajId, "Mesaj");
+
+            }
+
+        }
 
         public ActionResult GidenMesajiSil(int id)
         {
